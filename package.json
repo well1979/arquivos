@@ -5,7 +5,12 @@
   "repository": "https://github.com/well1979/arquivos.git",
   "author": "well1979 <well_bis@hotmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
   }
 }
