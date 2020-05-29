@@ -1,0 +1,11 @@
+{
+  "name": "arquivos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/well1979/arquivos.git",
+  "author": "well1979 <well_bis@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
