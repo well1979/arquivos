@@ -1,16 +1,22 @@
 const express = require("express")
 const bodyParser = require("body-parser")
+const mongoose = require("mongoose")
 const app = express()
 let port = 3000
 app.listen(port,() => {
         console.log('Servidor rodando na porta ${port}')
 })
 
+mongoose.connect("mongodb+srv://nodejs:admin@cluster0-yghw4.mongodb.net/test?retryWrites=true&w=majority" , { useNewUrlParser: true,useUnifiedTopology: true } )
+
 app.use(bodyParser.json())
 
 const users = {
 
 }
+
+const User = require("./src/models/user.js")
+
 app.get('/',(rec,res) => {
     res.json({ users })
 })
@@ -19,11 +25,12 @@ app.get('/get',(rec,res) => {
     res.json({ users })
 })
 
-app.post('/Post',(rec,res) => {
+app.post('/Post',async(rec,res) => {
     const {nome,cidade,idade} = rec.body
-    users[nome] = {cidade,idade,nome}
+    const user = await User.create({nome,cidade,idade})
+    //users[nome] = {cidade,idade,nome}
 
-    res.json((msg = "usuario criado com sucesso"))
+    res.json((user))
 })
 
 app.put('/put/:nome',(rec,res) => {
