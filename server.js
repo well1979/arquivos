@@ -15,34 +15,4 @@ const users = {
 
 }
 
-const User = require("./src/models/user.js")
-
-app.get('/',(rec,res) => {
-    res.json({ users })
-})
-
-app.get('/get',(rec,res) => {
-    res.json({ users })
-})
-
-app.post('/Post',async(rec,res) => {
-    const {nome,cidade,idade} = rec.body
-    const user = await User.create({nome,cidade,idade})
-    //users[nome] = {cidade,idade,nome}
-
-    res.json((user))
-})
-
-app.put('/put/:nome',(rec,res) => {
-    const {nome} = rec.params
-    const {cidade,idade} = rec.body
-    users[nome] = {cidade,idade,nome}
-    console.log(nome,cidade,idade)
-    res.json((msg = "usuario alterado com sucesso"))
-})
-
-app.delete('/delete/:mome',(rec,res) => {
-    const {nome} = rec.params
-    delete users[nome]
-    res.json((msg = "usuario deletado com sucesso"))
-})
+app.use('/', require('./src/models/routes.js'))
